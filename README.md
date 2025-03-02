@@ -10,10 +10,15 @@ First, let's understand each social-media that we'll want to post to:
 - What format it expects (title, description, subtitle, etc.)
 
 The platforms I want to use:
-- Instagram (shorts,post)
 - Hackernews
-- Youtube (shorts,post)
+- Reddit
+- X
 - Medium
+- Discord
+
+--> For future
+- Youtube (shorts,post) 
+- Instagram (shorts,post)
 
 
 ## Part 2: LLM & Instructions, GUI
