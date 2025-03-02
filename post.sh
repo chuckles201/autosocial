@@ -9,10 +9,10 @@ git add .
 # commiting
 msg="autosocial-deployment $(date)"
 git commit -m "$msg"
-git push origin
 
 # sending usernmae and password
 expect <<EOF
+    spawn git push origin
     expect "Username for 'https://github.com':"
     send "$username\r" 
     expect "Password for 'https://$username@github.com':"
