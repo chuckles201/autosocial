@@ -1,9 +1,201 @@
-A coup d'état in Myanmar began on the morning of 1 February 2021, when democratically elected members of the country's ruling party, the National League for Democracy (NLD), were deposed by the Tatmadaw, Myanmar's military, which then vested power in a military junta. Acting President of Myanmar Myint Swe proclaimed a year-long state of emergency and declared power had been transferred to Commander-in-Chief of Defence Services Senior General Min Aung Hlaing. It declared the results of the November 2020 general election invalid and stated its intent to hold a new election at the end of the state of emergency.[10][11] The coup d'état occurred the day before the Parliament of Myanmar was to swear in the members elected in the 2020 election, thereby preventing this from occurring.[12][13][14] President Win Myint and State Counsellor Aung San Suu Kyi were detained, along with ministers, their deputies, and members of Parliament.[15][16]
+---
+date: '2024-12-18T21:26:37-05:00'
+draft: false
+title: 'Setting up Hugo PaperMod site!'
 
-On 1 February 2021, Win Myint and Aung San Suu Kyi were arrested on charges that independent analysts regarded as part of an attempt to legitimize the military's seizure of power.[17][18] Both were remanded in custody for two weeks.[19][20][21] Between 16 February and 1 April, five additional charges were leveled against Aung San Suu Kyi.[22][23][24]
+cover:
+    image: images/pussinboots.png
+    alt: "DOESNT LOAD"
+    caption: "beautiful image of a real cat."
 
-Armed insurgencies by the People's Defence Force of the National Unity Government erupted throughout Myanmar in response to the military government's crackdown on anti-coup protests.[25]
+language: 'en-us'
+tags: []
+categories: []
 
-As of 13 March 2024, at least 50,000 people,[26] including at least 8,000 civilians (570 of whom were children),[27][28] have been killed by the junta forces and 26,234 individuals have been arrested.[29][30][31] In March 2021, three prominent members of the National League for Democracy (NLD) died in police custody,[32][33] and in July 2022, the junta executed four pro-democracy activists.[34]
+# to actually hide
+_build:
+  list: false
+  render: true
+---
 
-In honour of the anniversary for Myanmar's 76th year of independence in January 2024, more than 9,000 prisoners are slated to receive amnesty, leading to their release from prison.[35]
+### New-posts:
+
+To create posts, just use
+
+    hugo new /posts/name.md
+
+and then edit the markdown!
+
+
+### Editing our themes/other settings:
+
+Go into our config file, and follow documentation of your theme. Also, to add new link, just create the file, the url, and then link the layout to a folder in the theme!
+
+```yml
+menu:
+    main:
+        - identifier: categories
+          name: Categories
+          weight: 10
+          url: /categories/
+        - identifier: archives
+          name: Archives
+          weight: 20
+          url: /archives/
+        - identifier: tags
+          name: Tags
+          weight: 30
+          url: /tags/
+
+
+```
+
+[more params:](https://github.com/adityatelange/hugo-PaperMod/wiki/Variables)
+
+```yml
+# parameters/theme-varaibles
+params:
+# title
+homeInfoParams:
+    Title: "I am Charlie."
+    Content: "Welcome"
+socialIcons:
+    - name: github
+      url: 'github.com'
+
+
+# for image
+cover:
+    linkFullImages: True
+
+# misc site-variables
+ShowBreadCrumbs: False
+ShowCodeCopyButtons: True
+
+disableSpecial1stPost: True
+
+# how to get commnents?
+comments: True
+```
+
+## Uploading to Github
+1. First, we intialize the repo chuckles201.github.io, which will be the link to our site.
+
+2. We build our website in a different folder with the 'hugo' command
+
+## ***Adding Latex/Code***
+Now, we need to add functionality for latex for our site.
+
+First, we create an extend_head.html file, and then we enable math: true in our config params portion.
+
+$$
+p(awesome_{latex})\ncong \sum_{3}^{4}\int_{assssss}^{}
+$$
+
+if we have $p(x) = \sum_{3}^{4}$ we can do inline latex!
+
+which looks like:
+
+    $$
+    p(awesome_{latex})\ncong \sum_{3}^{4}\int_{assssss}^{}
+    $$
+
+    if we have $p(x) = \sum_{3}^{4}$ we can do inline latex!
+
+### ***Adding Code***
+
+Now, if we want to be able to add good-looking code, we can do the following with our params:
+
+```yml
+markup:
+    highlight:
+        codeFences: true        # Enable syntax highlighting for code fences
+        guessSyntax: true       # Automatically detect language if not specified
+        lineNos: true           # Display line numbers
+        noClasses: false        # Use CSS classes instead of inline styles
+        style: monokai          # Choose a theme (e.g., monokai, dracula, etc.)
+```
+
+and we can run
+
+    hugo gen chromastyles -h
+
+to see different styles.
+
+Here is some code
+
+```python
+print("hello")
+
+if function is false:
+    return function
+```
+
+
+## Expanding/Contracting codeblocks
+
+Now, let's add functionality to be able to specify for our content, when we want it to be collapsable.
+
+To do this, we simply need to load the markdown as normal, but just surround it as folllows (when we build the site):
+
+```html
+<details><summary="hello"></summary>
+
+...code here
+
+</details>
+```
+.
+
+Let's code a php file to check for the details part, and then we can implement it in our code!
+
+
+{{<details open=true summary="Code">}}
+```html
+<details {{ if .Get "open" }}open{{ end }}>
+    <summary>{{ .Get "summary" | default "Click to expand" }}</summary>
+    {{ .Inner | markdownify }}
+</details>
+```
+{{</details>}}
+
+This code basically allows usability of 'details' html tag, and defines how it should be used.
+
+We can also call it *inside* of code-blocks:
+
+```python
+{{< details open=true summary="python" class="collapsable">}}
+
+
+
+import hello
+import goodbye
+
+def advice():
+    return "make sure to include <highlight python>
+
+
+{{< /details >}}
+```
+
+And for anything else:
+
+
+{{<details open=false summary="Formula">}}
+$$
+p_n{4}
+$$
+{{</details>}}
+
+### Highlighting for code-block
+
+As you may have noticed, our code block did not higlight- that is becuse seemingly our text-inside is being rendered as raw-html.
+
+So, we will neeed to wrap it with a div, and add higlighting as per normal markdown-code display.
+
+First, we create our ```/partials/shortcode/div.html``` shortcode to allow us to include 'div' in our .md file. Shortcodes more broadly allow us to include any html in our markdown, but we must previously include it in our shortcodes file.
+
+
+
+
+unfortunately, I could not find any good solutions, and I will have to fight this battle another day...

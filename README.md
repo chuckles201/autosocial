@@ -3,6 +3,10 @@ Automatically posts to all desired socials, finetuned LLM writes appealing/good 
 
 ![cycle](cycle.png)
 
+Working in real-time:
+
+<video src="posting/images/Recording 2025-03-02 110834.mp4"  controls></video>
+
 ## Part 1: Posting
 
 First, let's understand each social-media that we'll want to post to:
