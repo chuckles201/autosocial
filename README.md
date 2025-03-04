@@ -43,4 +43,10 @@ The code is in [posting](posting/), and is seperated in the following way:
 
 ## Conclusion: Working with AI like future
 
-Write the conclusion about how you think AI will revoultionize communication, from governments/poltics, to reaching out to people. Will social and speaking abilities be rendered irrelevant?
+This was a fun project to build, and my first project that involved using API calls to an LLM, rather than dealing with the building of the model itself.
+
+Honestly, it is shocking how good LLM's are (im using claude 3.7 sonnet), and I think that their understanding and use of language will soon make tasks like this (posting/dealing with sharing your work) almost always be done automatically. 
+
+Atlhough I defeintely feel resistance to this, as sharing things does not require much effort, and sharing is really a part of the research/building. This trade off between efficiency and loss of actual thinking/doing things will definitely be a problem as we move forward with better AIs.
+
+I think, however, that humans have a remarkable ability to adapt, and to learn what is necessary. Caveman no doubt would frown upon the average person in their lack of ability to distinguish poisinous berries from safe ones, but today we can focus on more meaningful things (such as learning about technology and researching!). So I think that as long as we move forward and continue learning/building, we will quickly forget the irrelevant skills that can be automated, and learn those that are necessary to navigate the new world.
