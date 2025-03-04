@@ -22,11 +22,14 @@ appealing/good titles and descriptions for each platform.
 
 ![](/images/posts/autosocial/cycle.png)
 
-Working in real-time:
+GUI: ![](/images/posts/autosocial/posting/images/exampleGUI.png)
 
-<video src="posting/images/Recording 2025-03-02 110834.mp4" controls></video>
+Watch video:
 
-## Part 1: Posting#
+[
+![](/images/posts/autosocial/https://img.youtube.com/vi/pg5ajHkHW30/0.jpg)](https://www.youtube.com/watch?v=pg5ajHkHW30)
+
+# Part 1: Posting#
 
 First, let's understand each social-media that we'll want to post to:
 

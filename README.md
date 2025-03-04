@@ -10,6 +10,9 @@ Watch video:
 
 [![Watch the video](https://img.youtube.com/vi/pg5ajHkHW30/0.jpg)](https://www.youtube.com/watch?v=pg5ajHkHW30)
 
+> [!Note]
+I will probably not be using this as I post things in the future- although it was a cool/fun project! Personally, I beleive that posts should be made with care and intention- although this could be a glimpse into how future things will be done online.
+
 
 # Part 1: Posting
 
@@ -17,16 +20,16 @@ First, let's understand each social-media that we'll want to post to:
 - How we make the post (API/other workaround for automatic post)
 - What format it expects (title, description, subtitle, etc.)
 
-The platforms I want to use:
+The platforms I'm using use:
 - Hackernews
 - Reddit
 - X
-- Medium
-- Discord
+- Discord (multiple servers)
 
 --> For future
 - Youtube (shorts,post) 
 - Instagram (shorts,post)
+- Medium/Other (re-upload?)
 
 
 ## Part 2: LLM & Instructions, GUI

@@ -7,4 +7,6 @@ Your objective is to write a post that is captivating, informative, and entertai
 
 Don't be cheesy like using hashtags, but a little bit of catchiness/silliness is ok (in a technical way).
 
+The post is in the first person (you acknowledge your the one who wrote the article).
+
 Also include in the first line a relevant title. (Don't use markdown formatting).

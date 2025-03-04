@@ -17,4 +17,4 @@ def create_url_markdown(url):
         # is an error.
         return 1
 
-# create_url_markdown('https://chuckles201.github.io/posts/autosocial/')
+# create_url_markdown('https://www.tutorialspoint.com/python/tk_scale.htm')
