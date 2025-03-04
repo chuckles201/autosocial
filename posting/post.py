@@ -1,5 +1,6 @@
 # importing library
 from playwright.sync_api import sync_playwright
+import json
 
 # data-directory
 data_dir_chrome = r"C:\Users\charl\AppData\Local\Google\Chrome\User Data Copy"
@@ -8,13 +9,13 @@ chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 
 # getting file/post
-with open("posting/tweet.txt","r") as file:
+with open("posting/recources/tweet.txt","r",encoding='utf-8') as file:
         tweet = file.read()
 
 # posting function
 def post_X(url='https://test.com'):
 
-    tweet = f"{url}\n" + tweet
+    post = f"{url}\n" + tweet
     # closes browser when done
     with sync_playwright() as p:
         # open our browser
@@ -31,7 +32,7 @@ def post_X(url='https://test.com'):
         page.click('[aria-label="Post"]')
         
         page.wait_for_timeout(40)
-        page.keyboard.type(tweet[:270])
+        page.keyboard.type(post[:270])
         page.click('button[data-testid="tweetButton"]')
         page.screenshot(path="posting/images/Xscreenshot.png")
         
@@ -82,7 +83,7 @@ def post_reddit(url="https://test.com",type="[D]"):
         
         # getting on page
         page = browser.new_page()
-        page.goto("https://www.reddit.com/r/EJJohnsonMagic/submit/?type=TEXT")
+        page.goto("https://www.reddit.com/r/MachineLearning/submit/")
         
         # write
         page.wait_for_selector('textarea[name="title"]', timeout=5000)  # Waits up to 5s for input
@@ -91,18 +92,57 @@ def post_reddit(url="https://test.com",type="[D]"):
         page.fill('[aria-label="Post body text field"]',rest)
         page.wait_for_timeout(40)
         
-        # add flair
-        page.click('button[id="reddit-post-flair-button"]')
-        page.wait_for_timeout(40)
         
-        # submit, screenshot
-        if page.locator("")
+        # submit, screenshot 
         page.wait_for_selector('button[id="inner-post-submit-button"]', timeout=5000)  # Waits up to 5s for input
         page.click('button[id="inner-post-submit-button"]')
         page.wait_for_timeout(2000) # wait to post...
         page.screenshot(path="posting/images/redditScreenshot.png")
+
+# function to type with shift-space
+# make sure element already selected
+def type_shiftEnter(page,post):
+    for i in post[:1900].splitlines():
+        # type line, indent!
+        page.keyboard.type(i)
+        page.keyboard.down("Shift")
+        page.keyboard.press("Enter")
+        page.keyboard.up("Shift")
+    page.keyboard.press("Enter")
+
+# posting function
+def post_Discord(url='https://test.com',just_title=True):
+
+    if just_title:
+        post = tweet.splitlines()[0] + f"\n{url}"
+    else:
+        post = f"{url}\n" + tweet
         
+    # closes browser when done
+    with sync_playwright() as p:
+        # open our browser
+        def post_func(link):
+            browser = p.chromium.launch_persistent_context(user_data_dir=data_dir_chrome,
+                                                        executable_path=chrome_path,
+                                                        headless=False)
+            
+            # getting on page
+            page = browser.new_page()
+            page.goto(link)
+            
+            # wait for load,write
+            page.wait_for_selector('svg[class="icon__9293f"]', state="visible",timeout=5000)  # Waits up to 5s for the button
+            type_shiftEnter(page,post)
+            
+            # proof
+            page.wait_for_timeout(40)
+            page.screenshot(path="posting/images/Discscreenshot.png")
+            browser.close()
+            
+        # doing all parts
+        with open("posting/recources/discord.json",'r') as file:
+            data = json.load(file)
         
-        
-        
-post_reddit(url="https://www.drive.com.au/guides/electric-cars/")
+        for l in data['discord_servers']:
+            post_func(l)
+

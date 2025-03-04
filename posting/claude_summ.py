@@ -5,11 +5,23 @@ import anthropic
 api_pass = os.environ.get("anthropic_api_key")
 
 
-def create_summary_title(max_len = 150):
-    with open("posting/instructions.txt", "r") as file:
-        instructions = file.read()
+def create_summary_title(max_len = 150,default_instructions=True):
+    print("Claude is Summarizing...")
+    # if we want default instructions
+    if default_instructions:
+        with open("posting/recources/instructions.txt", "r",encoding='utf-8') as file:
+            instructions = file.read()
+    else:
+        instructions = ""
+    
+    with open("posting/recources/extra_instructions.txt", "r",encoding='utf-8') as file:
+        instructions_extra = file.read()
+    
+    instructions = instructions + "\n" + instructions_extra
+    
+    print("Instructions:\n",instructions)
         
-    with open("posting/article.txt", "r") as file:
+    with open("posting/recources/article.txt", "r",encoding='utf-8') as file:
         article = file.read()
 
     client = anthropic.Anthropic(
@@ -35,11 +47,10 @@ def create_summary_title(max_len = 150):
     token_ctI = message.usage.input_tokens
     cost = token_ctI * 3 * (10**-6) +  token_ctO * 15 * (10**-6) 
     
-    with open('posting/tweet.txt','w') as tweet:
+    with open('posting/recources/tweet.txt','w') as tweet:
         tweet.write(msg)
         
     print("Summarized, length of: ", token_ctO, " tokens")
     print("Cost of: $",cost)
 
 
-# create_summary_title()

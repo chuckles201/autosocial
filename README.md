@@ -3,11 +3,15 @@ Automatically posts to all desired socials, finetuned LLM writes appealing/good 
 
 ![cycle](cycle.png)
 
-Working in real-time:
+GUI:
+![gui](posting/images/exampleGUI.png)
 
-<video src="posting/images/Recording 2025-03-02 110834.mp4"  controls></video>
+Watch video:
 
-## Part 1: Posting
+[![Watch the video](https://img.youtube.com/vi/pg5ajHkHW30/0.jpg)](https://www.youtube.com/watch?v=pg5ajHkHW30)
+
+
+# Part 1: Posting
 
 First, let's understand each social-media that we'll want to post to:
 - How we make the post (API/other workaround for automatic post)
