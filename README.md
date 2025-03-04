@@ -14,13 +14,10 @@ Watch video:
 I will probably not be using this as I post things in the future- although it was a cool/fun project! Personally, I beleive that posts should be made with care and intention- although this could be a glimpse into how future things will be done online.
 
 
-# Part 1: Posting
+# Goals
+I want to create an application that takes a blog post you wrote, writes an appealing, but not over-the-top summary, and then shares this on various techical 'social media' websites.
 
-First, let's understand each social-media that we'll want to post to:
-- How we make the post (API/other workaround for automatic post)
-- What format it expects (title, description, subtitle, etc.)
-
-The platforms I'm using use:
+The platforms it posts to:
 - Hackernews
 - Reddit
 - X
@@ -31,17 +28,20 @@ The platforms I'm using use:
 - Instagram (shorts,post)
 - Medium/Other (re-upload?)
 
+in the future, potentially we could use a video generation model to take our article and use a model to create a script, and video based on the article that is short and appealing, and serves to get the watcher interested in the article/share its true content.
 
-## Part 2: LLM & Instructions, GUI
-Next, I'd like to create an instruction-set/prompt for the LLM we choose to use, that makes it write an appealing summary/description of our post. The pipeline will be:
+Eventually, also I'd like it to automatically gather metrics.
 
-- Give LLM post and instructions (with gui?)
-- Take LLM's post, and post it with the format we find in the previous step
+# Overview
 
-## Part 3: Track metrics
-Automatically track the metrics for our post (as provided by the platform), and have a dashboard to see the metrics for each post.
+The code is in [posting](posting/), and is seperated in the following way:
+- [post.py](posting/post.py): post a given URL and content to each social using playwright to automate browser actions
+-[claude_summ.py](posting/claude_summ.py): Sends API call to Sonnet 3.7 and summarizes the website; takes [instructions.txt](posting/recources/instructions.txt) and [extra_instructions.txt](posting/recources/extra_instructions.txt) and modifies the tweet file for post.py to acess
+- [guinter.py](posting/guinter.py): code for the gui that takes information about where to post/extra instructions to add
+- [markdowndownload.py](posting/markdowndownload.py) takes the url, downloads the raw html, uses html2text (awesome) to convert html to markdown so an LLM can read it
+- [pipeline.py](posting/pipeline.py) puts it all together: settings w/ GUI, extract w/html2text, summarize with claude, post with playwright!
 
-Also, maybe have a system for integrating the comments across all socials, or at least displaying some of the metrics shared across all platforms on each platform, and also provide links to each other platform that it was posted on!
+
 
 ## Conclusion: Working with AI like future
 
